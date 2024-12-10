@@ -52,17 +52,17 @@ def empleado_detail(request, pk):
     except Empleado.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
-    if request.method=='GET': 
+    if request.method=='GET':
         serializer = EmpleadoSerializer(empleado)
         return Response(serializer.data)
     
-    if request.method = 'PUT':
+    if request.method == 'PUT':
         serializer = EmpleadoSerializer(empleado, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    if request.method = 'DELETE':
+    if request.method == 'DELETE':
         empleado.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
